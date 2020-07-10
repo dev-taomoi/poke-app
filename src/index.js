@@ -1,17 +1,21 @@
+// external imports
 import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
+import { render } from 'react-dom';
+import { configureStore } from '@reduxjs/toolkit';
+import { Provider } from 'react-redux';
+
+// local imports
 import App from './App';
-import * as serviceWorker from './serviceWorker';
+import rootReducer from './slices';
 
-ReactDOM.render(
-  <React.StrictMode>
+// assets
+import './index.css';
+
+const store = configureStore({ reducer: rootReducer });
+
+render(
+  <Provider store={store}>
     <App />
-  </React.StrictMode>,
+  </Provider>,
   document.getElementById('root')
-);
-
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+)
